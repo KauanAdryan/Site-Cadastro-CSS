@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibição de Dados</title>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="bh">Cadastrar</a>
+        <button class="bh">Exibir Dados</button>
+    </header>
+    <div class="container">
+        <h2>Dados Cadastrados</h2>
+        <table id="tabela">
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Idade</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function carregarDados() {
+            let tabela = document.getElementById("tabela");
+            let dados = JSON.parse(localStorage.getItem("cadastros")) || [];
+
+            dados.forEach(pessoa => {
+                let linha = tabela.insertRow();
+                linha.insertCell(0).textContent = pessoa.nome;
+                linha.insertCell(1).textContent = pessoa.email;
+                linha.insertCell(2).textContent = pessoa.idade;
+            });
+        }
+
+        window.onload = carregarDados;
+    </script>
+</body>
+</html>
